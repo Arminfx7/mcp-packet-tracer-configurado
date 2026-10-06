@@ -204,6 +204,8 @@ def register_tools(mcp: FastMCP) -> None:
         dual_stack: bool = False,
         ipv6_base: str = "2001:db8::/32",
         wireless_laptops: bool = False,
+        lan_base: str = "192.168.0.0/16",
+        link_base: str = "10.0.0.0/16",
     ) -> str:
         """
         Genera un plan completo de topología de red para Packet Tracer.
@@ -254,6 +256,8 @@ def register_tools(mcp: FastMCP) -> None:
             dual_stack=dual_stack,
             ipv6_base=ipv6_base,
             wireless_laptops=wireless_laptops,
+            base_network=lan_base,
+            inter_router_network=link_base,
         )
         plan, validation = plan_from_request(request)
         return plan.model_dump_json(indent=2)
@@ -411,6 +415,8 @@ def register_tools(mcp: FastMCP) -> None:
         dual_stack: bool = False,
         ipv6_base: str = "2001:db8::/32",
         wireless_laptops: bool = False,
+        lan_base: str = "192.168.0.0/16",
+        link_base: str = "10.0.0.0/16",
     ) -> str:
         """
         Pipeline completo: planifica, valida, genera, explica, estima y despliega.
@@ -461,6 +467,8 @@ def register_tools(mcp: FastMCP) -> None:
             dual_stack=dual_stack,
             ipv6_base=ipv6_base,
             wireless_laptops=wireless_laptops,
+            base_network=lan_base,
+            inter_router_network=link_base,
         )
         plan, validation = plan_from_request(request)
         explanation = explain_plan(plan)

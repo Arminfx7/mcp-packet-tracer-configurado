@@ -61,6 +61,15 @@
 
 ## What it does
 
+## Configuraciones de laboratorio incluidas
+
+Esta copia incluye proyectos de Cisco Packet Tracer listos para abrir en la carpeta [`projects/`](projects/):
+
+- [`topologia_RIP_5_routers.pkt`](projects/topologia_RIP_5_routers.pkt): anillo de cinco routers con RIP v2, cinco LAN y dos PCs por LAN.
+- [`topologia_excel_tipoA_tipoB.pkt`](projects/topologia_excel_tipoA_tipoB.pkt): topología basada en el ejercicio de subneteo.
+
+Consulta [`INSTALACION.md`](INSTALACION.md) para instalar el MCP y [`CREDITOS.md`](CREDITOS.md) para conocer la procedencia del código y las referencias utilizadas.
+
 A **Model Context Protocol (MCP) server** that gives any LLM (Claude, GitHub Copilot, Codex, …) full programmatic control over Cisco Packet Tracer.
 
 | | Feature | Details |
