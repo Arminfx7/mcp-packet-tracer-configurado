@@ -4,7 +4,7 @@
 
 - Python 3.11 o superior.
 - Cisco Packet Tracer instalado para abrir los archivos `.pkt`.
-- Un cliente MCP compatible, por ejemplo Claude Desktop, VS Code/Copilot o Codex.
+- Un cliente de chat compatible con MCP, por ejemplo ChatGPT/Codex u otra aplicación que permita registrar servidores MCP locales.
 
 ## Instalación local
 

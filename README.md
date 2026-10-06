@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="demo/banner.png" alt="Packet Tracer MCP — AI-powered Cisco Packet Tracer automation: generate, validate and deploy network topologies from natural-language prompts" width="100%"/>
+<img src="demo/mcp-packet-tracer-banner.svg" alt="MCP Packet Tracer — automatización de topologías Cisco" width="100%"/>
 
 **Tell your AI _"create a network with 3 routers, OSPF and DHCP"_ — it plans, validates, generates, and deploys the topology directly into Cisco Packet Tracer in real time.**
 
@@ -32,30 +32,12 @@
 
 ---
 
-## Showcase
+## Vista del laboratorio
 
 <p align="center">
-  <img src="demo/topology-screenshot.png" alt="3-router OSPF topology deployed to Packet Tracer" width="720"/>
+  <img src="demo/topologia-rip-5-routers.svg" alt="Topología RIP v2 con cinco routers" width="820"/>
 </p>
-<p align="center"><sub>3-router linear topology with OSPF, DHCP, and 6 PCs — planned and deployed via MCP tools</sub></p>
-
-<table>
-<tr>
-<td width="50%">
-<p align="center"><img src="demo/mcp-client.png" alt="MCP tools executing in VS Code" width="100%"/></p>
-<p align="center"><sub>Full build + live deploy pipeline in VS Code</sub></p>
-</td>
-<td width="50%">
-<p align="center"><img src="demo/cli-config.png" alt="Generated IOS CLI configs" width="100%"/></p>
-<p align="center"><sub>Auto-generated IOS CLI configs with OSPF & DHCP</sub></p>
-</td>
-</tr>
-</table>
-
-<p align="center">
-  <img src="demo/live-deploy.gif" alt="Live deploy demo — from prompt to Packet Tracer in real time" width="720"/>
-</p>
-<p align="center"><sub>Live deploy — from a natural-language prompt to a running topology in Packet Tracer</sub></p>
+<p align="center"><sub>Gráfico propio del laboratorio incluido: cinco routers en anillo, RIP v2 y cinco LAN.</sub></p>
 
 ---
 
@@ -70,7 +52,7 @@ Esta copia incluye proyectos de Cisco Packet Tracer listos para abrir en la carp
 
 Consulta [`INSTALACION.md`](INSTALACION.md) para instalar el MCP y [`CREDITOS.md`](CREDITOS.md) para conocer la procedencia del código y las referencias utilizadas.
 
-A **Model Context Protocol (MCP) server** that gives any LLM (Claude, GitHub Copilot, Codex, …) full programmatic control over Cisco Packet Tracer.
+A **Model Context Protocol (MCP) server** para usar desde ChatGPT/Codex u otro cliente de chat compatible con MCP, con control programático de Cisco Packet Tracer.
 
 | | Feature | Details |
 |---|---------|---------|
@@ -95,26 +77,31 @@ A **Model Context Protocol (MCP) server** that gives any LLM (Claude, GitHub Cop
 **1. Install the server**
 
 ```bash
-git clone https://github.com/Mats2208/MCP-Packet-Tracer
-cd MCP-Packet-Tracer
+git clone https://github.com/Arminfx7/mcp-packet-tracer-configurado
+cd mcp-packet-tracer-configurado
+python -m venv .venv
+# Windows PowerShell: .\\.venv\\Scripts\\Activate.ps1
+# Linux/macOS: source .venv/bin/activate
 pip install -e .
 ```
 
-**2. Connect your MCP client** (Claude Code shown)
+**2. Conecta tu cliente de chat**
 
-_Linux · macOS · Git Bash · Windows `cmd.exe`:_
+En ChatGPT/Codex o en otro cliente de chat compatible con MCP, registra el servidor local con esta configuración:
 
-```bash
-claude mcp add --scope user --transport stdio packet-tracer -- python -m packet_tracer_mcp --stdio
+```json
+{
+  "mcpServers": {
+    "packet-tracer": {
+      "command": "C:/ruta/al/repositorio/.venv/Scripts/python.exe",
+      "args": ["-m", "packet_tracer_mcp", "--stdio"],
+      "cwd": "C:/ruta/al/repositorio"
+    }
+  }
+}
 ```
 
-_Windows PowerShell_ — quote the `--` separator, or PowerShell swallows it and Claude aborts with `error: unknown option '-m'`:
-
-```powershell
-claude mcp add --scope user --transport stdio packet-tracer "--" python -m packet_tracer_mcp --stdio
-```
-
-Verify with `claude mcp list` (look for `packet-tracer … ✓ Connected`).
+En Linux/macOS usa `.venv/bin/python`. La ruta debe apuntar a la carpeta donde clonaste este repositorio.
 
 **3. Install the live-deploy extension** — _only if you want real-time deploy into a running Packet Tracer_
 
@@ -122,29 +109,13 @@ Download **`V5.pts`** from [**Releases**](https://github.com/Mats2208/MCP-Packet
 
 > **v0.6.0+ requires V5.** The bridge now authenticates with a per-machine token that the V5 extension reads automatically; builds before V5 can't authenticate.
 
-**4. Install the Claude Code Skill** — _recommended; makes the AI use the MCP correctly instead of guessing_
+**4. Usa el chat para solicitar la topología**
 
-The repo ships a companion **[Agent Skill](skill/SKILL.md)** that teaches the model the exact tool
-catalog, the discover→plan→validate→deploy workflow, and the precise Script-Engine API (so it never
-invents method/model/port names). Install it **globally** from the repo root:
+Ejemplo de prompt:
 
-_Linux · macOS · Git Bash:_
+> Crea una topología RIP v2 con cinco routers en anillo, cinco switches y dos PCs por LAN. Usa las IP indicadas en el Excel, configura las interfaces, agrega etiquetas de IP y verifica con ping.
 
-```bash
-mkdir -p ~/.claude/skills/packet-tracer && cp skill/SKILL.md ~/.claude/skills/packet-tracer/SKILL.md
-```
-
-_Windows PowerShell:_
-
-```powershell
-New-Item -ItemType Directory -Force "$HOME\.claude\skills\packet-tracer" | Out-Null; Copy-Item skill\SKILL.md "$HOME\.claude\skills\packet-tracer\SKILL.md"
-```
-
-Then run `/reload-skills` in Claude Code (or restart it) and confirm with `/skills`. Details →
-**[Skill docs](https://mats2208.github.io/MCP-Packet-Tracer/skill/)**.
-
-> Requires **Python 3.11+** (deps `mcp[cli]>=1.13`, `pydantic>=2.11` install automatically).
-> Full setup for every client → **[Installation docs](https://mats2208.github.io/MCP-Packet-Tracer/installation/)**.
+Consulta [`INSTALACION.md`](INSTALACION.md) para la configuración completa. Requiere **Python 3.11+**.
 
 ## Quick start
 
@@ -163,8 +134,8 @@ own **MCP Control Center** extension once — the `.pts` from
 **Extensions → Scripting → Configure PT Script Modules → Add…**, then open
 **Extensions → MCP BUILDER**. It auto-connects to the bridge — no snippet to paste.
 
-<p align="center"><img src="demo/install-demo.gif" alt="Installing the MCP Control Center extension in Packet Tracer" width="760"/></p>
-<p align="center"><sub>Installing the MCP Control Center extension (V5) in Packet Tracer</sub></p>
+<p align="center"><img src="demo/topologia-rip-5-routers.svg" alt="Configuración RIP v2 del laboratorio" width="820"/></p>
+<p align="center"><sub>Configuración propia incluida en este repositorio.</sub></p>
 
 📖 Full steps → **[Live Deploy Setup](https://mats2208.github.io/MCP-Packet-Tracer/live-deploy/)**.
 

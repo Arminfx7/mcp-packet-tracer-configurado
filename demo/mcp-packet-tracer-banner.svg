@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" role="img" aria-labelledby="title desc">
+  <title id="title">MCP Packet Tracer</title>
+  <desc id="desc">Banner propio para automatización de topologías de Cisco Packet Tracer</desc>
+  <defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#071a33"/><stop offset="1" stop-color="#0b5672"/></linearGradient><linearGradient id="node" x1="0" x2="1"><stop stop-color="#4dd0e1"/><stop offset="1" stop-color="#81d4fa"/></linearGradient></defs>
+  <rect width="1200" height="260" rx="24" fill="url(#bg)"/>
+  <g stroke="#51d6d6" stroke-width="4" opacity=".7" fill="none"><path d="M80 190 L220 100 L370 180 L520 82 L690 174 L850 90 L1080 170"/><path d="M220 100 L300 225 M520 82 L600 225 M850 90 L920 225"/></g>
+  <g fill="url(#node)" stroke="#d8ffff" stroke-width="3"><circle cx="80" cy="190" r="14"/><circle cx="220" cy="100" r="18"/><circle cx="370" cy="180" r="14"/><circle cx="520" cy="82" r="18"/><circle cx="690" cy="174" r="14"/><circle cx="850" cy="90" r="18"/><circle cx="1080" cy="170" r="14"/><circle cx="300" cy="225" r="11"/><circle cx="600" cy="225" r="11"/><circle cx="920" cy="225" r="11"/></g>
+  <text x="70" y="58" fill="#fff" font-family="Arial, sans-serif" font-size="42" font-weight="700">MCP PACKET TRACER</text><text x="72" y="102" fill="#b9f6ff" font-family="Arial, sans-serif" font-size="22">Chat + automatización de redes Cisco</text><text x="72" y="142" fill="#fff" font-family="Arial, sans-serif" font-size="18">Planifica · configura · valida · verifica</text>
+</svg>
