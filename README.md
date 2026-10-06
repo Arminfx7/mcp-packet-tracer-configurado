@@ -32,13 +32,6 @@
 
 ---
 
-## Vista del laboratorio
-
-<p align="center">
-  <img src="demo/topologia-rip-5-routers.svg" alt="Topología RIP v2 con cinco routers" width="820"/>
-</p>
-<p align="center"><sub>Gráfico propio del laboratorio incluido: cinco routers en anillo, RIP v2 y cinco LAN.</sub></p>
-
 ---
 
 ## What it does
@@ -133,9 +126,6 @@ own **MCP Control Center** extension once — the `.pts` from
 [**Releases**](https://github.com/Mats2208/MCP-Packet-Tracer/releases/latest) — via
 **Extensions → Scripting → Configure PT Script Modules → Add…**, then open
 **Extensions → MCP BUILDER**. It auto-connects to the bridge — no snippet to paste.
-
-<p align="center"><img src="demo/topologia-rip-5-routers.svg" alt="Configuración RIP v2 del laboratorio" width="820"/></p>
-<p align="center"><sub>Configuración propia incluida en este repositorio.</sub></p>
 
 📖 Full steps → **[Live Deploy Setup](https://mats2208.github.io/MCP-Packet-Tracer/live-deploy/)**.
 
